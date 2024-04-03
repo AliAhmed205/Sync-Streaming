@@ -28,7 +28,6 @@ app.get('/', (req, res) => {
     ])
     .then(([trendingJson, topRatedJson]) => {
         res.render('index.ejs', {
-            title: 'Netflix',
             filmlijst: trendingJson.results || [], // Renamed 'movies' to 'filmlijst'
             searchResults: [], // Voeg een lege array toe voor searchResults
             topRatedMovies: topRatedJson.results || []
@@ -37,7 +36,6 @@ app.get('/', (req, res) => {
     .catch(err => {
         console.error('error:' + err);
         res.render('index.ejs', {
-            title: 'Netflix',
             filmlijst: [], // Renamed 'movies' to 'filmlijst'
             searchResults: [], // Voeg een lege array toe voor searchResults
             topRatedMovies: [] // Add top-rated films to the data sent to EJS

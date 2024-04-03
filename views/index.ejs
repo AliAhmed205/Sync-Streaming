@@ -3,74 +3,74 @@
 <%- include('head.ejs') %>
 
 <body>
-    <h1><%= title %></h1>
+  <h1><p>👁️👁️</p> peak</h1>
 
-    <div class="parent">
-        <a href="" class="div1"><img src="/images/universal_pictures_logo_combination__1997___2012__by_vincerabina_dgmf27h-fullview.png" alt="universal-studios"></a>
-        <a href="" class="div2"><img src="/images/warnerbros.png" alt="disney-logo"></a>
-        <a href="" class="div3"><img src="/images/paramount.png" alt="disney-logo"></a>
-        <a href="" class="div4"><img src="/images/sonypicture.png" alt="disney-logo"></a>
-        <a href="" class="div5"><img src="/images/pixar.png" alt="disney-logo"></a>
-        <a href="" class="div6"><img src="/images/disney.png" alt="disney-logo"></a>
-    </div>
+  <div class="parent">
+    <a href="" class="div1"><img src="/images/white-disney.svg" alt="universal-studios"></a>
+    <a href="" class="div2"><img src="/images/white-sony.svg" alt="universal-studios"></a>
+    <a href="" class="div3"><img src="/images/white-paramount.svg" alt="universal-studios"></a>
+    <a href="" class="div4"><img src="/images/white-pixar.svg" alt="universal-studios"></a>
+    <a href="" class="div5"><img src="/images/white-universal.svg" alt="universal-studios"></a>
+    <a href="" class="div6"><img src="/images/white-web.svg" alt="universal-studios"></a>
+  </div>
 
-    <% if (filmlijst && filmlijst.length > 0) { %>
-    <h2>Nieuwe releases</h2>
-    <ul>
-        <% filmlijst.forEach(film => { %>
-        <li>
-            <!-- Weergeef alleen de titel en thumbnail van de film -->
-            <% if (film.poster_path) { %>
-            <a href="#"><img src="https://image.tmdb.org/t/p/w500<%= film.poster_path %>" alt="<%= film.title %>"></a>
-            <% } else { %>
-            <p>No poster available</p>
-            <% } %>
-            <!-- <h3><%= film.title %></h3> -->
-        </li>
+  <% if (filmlijst && filmlijst.length > 0) { %>
+  <h2>Nieuwe releases</h2>
+  <ul>
+    <% filmlijst.forEach(film => { %>
+    <li>
+      <!-- Weergeef alleen de titel en thumbnail van de film -->
+      <% if (film.poster_path) { %>
+      <a href="#"><img src="https://image.tmdb.org/t/p/w500<%= film.poster_path %>" alt="<%= film.title %>"></a>
+      <% } else { %>
+      <p>No poster available</p>
+      <% } %>
+      <!-- <h3><%= film.title %></h3> -->
+    </li>
 
-        <% }); %>
-    </ul>
-    <% } else { %>
-    <p>Er zijn geen films beschikbaar op dit moment.</p>
-    <% } %>
+    <% }); %>
+  </ul>
+  <% } else { %>
+  <p>Er zijn geen films beschikbaar op dit moment.</p>
+  <% } %>
 
-    <% if (topRatedMovies && topRatedMovies.length > 0) { %>
-    <h2>Top Rated films</h2>
-    <ul>
-        <% topRatedMovies.forEach(movie => { %>
-        <li>
-            <!-- Weergeef alleen de titel en thumbnail van de film -->
-            <% if (movie.poster_path) { %>
-            <img src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="<%= movie.title %>">
-            <% } else { %>
-            <p>No poster available</p>
-            <% } %>
-            <!-- <h3><%= movie.title %></h3> -->
-        </li>
-        <% }); %>
-    </ul>
-    <% } else { %>
-    <p>Er zijn geen top-rated films beschikbaar op dit moment.</p>
-    <% } %>
+  <% if (topRatedMovies && topRatedMovies.length > 0) { %>
+  <h2>Top Rated films</h2>
+  <ul>
+    <% topRatedMovies.forEach(movie => { %>
+    <li>
+      <!-- Weergeef alleen de titel en thumbnail van de film -->
+      <% if (movie.poster_path) { %>
+      <img src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="<%= movie.title %>">
+      <% } else { %>
+      <p>No poster available</p>
+      <% } %>
+      <!-- <h3><%= movie.title %></h3> -->
+    </li>
+    <% }); %>
+  </ul>
+  <% } else { %>
+  <p>Er zijn geen top-rated films beschikbaar op dit moment.</p>
+  <% } %>
 
 
 
-    <% if (searchResults && searchResults.length > 0) { %>
-    <h2>Zoekresultaten:</h2>
-    <ul>
-        <% searchResults.forEach(result => { %>
-        <li>
-            <!-- Weergeef alleen de titel en thumbnail van de film -->
-            <h3><%= result.title %></h3>
-            <% if (result.poster_path) { %>
-            <img src="https://image.tmdb.org/t/p/w500<%= result.poster_path %>" alt="<%= result.title %>">
-            <% } else { %>
-            <p>No poster available</p>
-            <% } %>
-        </li>
-        <% }); %>
-    </ul>
-    <% } %>
+  <% if (searchResults && searchResults.length > 0) { %>
+  <h2>Zoekresultaten:</h2>
+  <ul>
+    <% searchResults.forEach(result => { %>
+    <li>
+      <!-- Weergeef alleen de titel en thumbnail van de film -->
+      <h3><%= result.title %></h3>
+      <% if (result.poster_path) { %>
+      <img src="https://image.tmdb.org/t/p/w500<%= result.poster_path %>" alt="<%= result.title %>">
+      <% } else { %>
+      <p>No poster available</p>
+      <% } %>
+    </li>
+    <% }); %>
+  </ul>
+  <% } %>
 
 </body>
 
