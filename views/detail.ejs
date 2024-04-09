@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('head.ejs') %>
+
+<body id="detail-pagina">
+    <header>
+        <nav>
+            <a href="/">&#8249;</a>
+        </nav>
+    </header>
+    <main>  
+    <% if (videoData.length) { %>
+            <div id="gradient-container">
+                <div id="box"></div>
+            <div class="plyr__video-embed" id="player">
+                <img src="https://image.tmdb.org/t/p/w500<%= detailData.backdrop_path %>" alt="">
+                <iframe width="560" height="315" src='https://www.youtube.com/embed/<%= videoData[0].key %>?iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1'
+                    title="movie trailer of <%= videoData[0].name %>" frameborder="0"
+                    allowfullscreen
+                    allowtransparency
+                    allow="autoplay"></iframe>
+                </div>
+                <div id="sync-gradient"></div>
+            </div>
+
+                <% } else { %>
+                    <p>No videos found for this movie.</p>
+                <% } %>
+                <section>
+                    <h1><%= detailData.title %></h1>
+                    <div>
+                    <button type="button">&#9658; Play</button>
+                    <button type="button"><a href="https://www.youtube.com/watch?v=<%= videoData[0].key %>">&#9658; Trailer</a></button>
+                    </div>
+                    <h3><%= detailData.production_companies[0].name %></h3>
+                    <h5> <span>🕒</span> 
+                        <%= detailData.runtime >= 60 ? Math.floor(detailData.runtime / 60) + "h" + (detailData.runtime % 60 != 0 ? " " + (detailData.runtime % 60) + "m" : "") : detailData.runtime + "m" %>
+                    </h5>
+                    <h4>Synopsis</h4>
+                    <p><%= detailData.overview %></p>
+                    <h4>Genres</h4>
+                    <div>
+                        <p>
+                            <% detailData.genres.forEach(function(genre, index) { %>
+                                <%= genre.name %><% if (index < detailData.genres.length - 1) { %>, <% } %>
+                            <% }); %>
+                        </p>
+                    </div>
+
+                 </section>
+            </main>
+     <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <script src="/js/script.js"></script>
+</body>
+</html>

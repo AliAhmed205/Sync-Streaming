@@ -2,8 +2,20 @@
 <html lang="en">
 <%- include('head.ejs') %>
 
-<body>
-  <h1><p>👁️👁️</p> peak</h1>
+<body id="index">
+  <nav>
+  <h1>sync</h1>
+  <p id="searchIcon">🔍</p>
+  </nav>
+
+
+  <section id="searchNav">
+  <form id="search-form" action="/search" method="get">
+  <label for="searching"></label>
+    <input type="search" name="term" id="searching" placeholder="Search for a movie">
+  </form>
+  </section>
+
 
   <div class="parent">
     <a href="" class="div1"><img src="/images/white-disney.svg" alt="universal-studios"></a>
@@ -15,13 +27,13 @@
   </div>
 
   <% if (filmlijst && filmlijst.length > 0) { %>
-  <h2>Nieuwe releases</h2>
+    <h2>Nieuwe releases</h2>
   <ul>
     <% filmlijst.forEach(film => { %>
     <li>
       <!-- Weergeef alleen de titel en thumbnail van de film -->
       <% if (film.poster_path) { %>
-      <a href="#"><img src="https://image.tmdb.org/t/p/w500<%= film.poster_path %>" alt="<%= film.title %>"></a>
+      <a href="/detail/<%= film.id %>"><img src="https://image.tmdb.org/t/p/w500<%= film.poster_path %>" alt="<%= film.title %>"></a>
       <% } else { %>
       <p>No poster available</p>
       <% } %>
@@ -72,6 +84,7 @@
   </ul>
   <% } %>
 
+  <script src="/js/script.js"></script>
 </body>
 
 </html>

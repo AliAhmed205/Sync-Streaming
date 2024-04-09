@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Fahkwang:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Fredoka:wght@300..700&family=Noto+Emoji:wght@300..700&display=swap');
 
 :root {
-  /* --blue-color: oklch(46.85% 0.31321437166460125 264.052020638055); */
+  --blue-color: oklch(46.85% 0.31321437166460125 264.052020638055);
 }
 
 body {
@@ -11,9 +11,142 @@ body {
   background-attachment: fixed;
   color: white;
   font-family: "Comfortaa", sans-serif;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
-h1 {
+#searchNav {
+  width: 100%;
+  height: 100lvh;
+  background: radial-gradient(#000dff 0%, black 100%);
+  position: absolute;
+  top: 0;
+  z-index: 99;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.active {
+  translate: 0 0;
+  pointer-events: all;
+  opacity: 1;
+}
+
+#searchNav input {
+  width: 87vw;
+  padding: 1rem;
+  margin: 1em;
+  background-color: transparent;
+  border: none;
+  border-bottom: .1rem solid var(--blue-color);
+  color: white;
+  font-size: 1.4rem;
+}
+
+#searchNav input:focus {
+  outline: none;
+  /* border: solid cyan 1px; */
+  /* box-shadow: cyan 0 0 10px; */
+
+}
+
+
+#index nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#index nav h1 {
+  margin-right: auto;
+  margin-left: auto;
+  /* margin-top: 0; */
+}
+
+#index nav p {
+  font-family: "Noto Emoji", sans-serif;
+  color: white;
+  font-size: 1.5rem;
+  margin-top: 0;
+}
+
+#unsynced {
+  background: radial-gradient(#ff0000 0%, black 100%);
+  background-attachment: fixed;
+  color: white;
+  font-family: "Comfortaa", sans-serif;
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+#server-error {
+  background: radial-gradient(#323232 0%, black 100%);
+  background-attachment: fixed;
+  color: white;
+  font-family: "Comfortaa", sans-serif;
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+#unsynced div {
+  width: 100%;
+  height: 100lvh;
+  position: absolute;
+  top: 0;
+  background: radial-gradient(#000dff 0%, black 100%);
+  z-index: -1;
+  animation: fadeOut 1s 1s forwards;
+}
+
+#unsynced nav {
+  display: flex;
+  justify-content: center;
+  animation: horizontal-shaking .5s .5s forwards;
+  position: relative;
+  font-size: 1.5em;
+}
+
+
+#unsynced main {
+  text-align: center;
+}
+
+#unsynced main h2 {
+  font-size: 5rem;
+  opacity: 0;
+  margin: 0;
+  animation: fadeIn .5s 1s forwards;
+}
+
+#unsynced main h3 {
+  font-size: 1.5rem;
+  width: 70%;
+  margin: 1rem auto 0 auto;
+  opacity: 0;
+  animation: fadeIn .5s 1s forwards;
+}
+
+#unsynced main p:first-of-type {
+  width: 70%;
+  margin: 2rem auto;
+  opacity: 0;
+  animation: fadeIn .5s 1.5s forwards;
+}
+
+#unsynced main p:last-of-type{
+  width: 70%;
+  margin: 2rem auto;
+  font-size: 4rem;
+  opacity: 0;
+  animation: fadeIn .5s 2s forwards;
+
+}
+
+#index h1 {
   margin: .5em 0;
   display: flex;
   justify-content: center;
@@ -22,11 +155,11 @@ h1 {
   opacity: 0;
   text-align: center;
   animation: fadeIn 1s 1s ease-in-out forwards,
-  slideIn 1s 1s forwards;
+    slideIn 1s 1s forwards;
   gap: .5em;
 }
 
-h1 p {
+#index h1 p {
   font-family: "Noto Emoji", sans-serif;
   font-size: .8em;
   animation: pop 0.3s 2s linear 1, fadeIn 0.3s 2s forwards;
@@ -35,7 +168,43 @@ h1 p {
 
 }
 
-ul {
+h3 {
+  margin: 0 2rem 1rem 2rem;
+}
+
+#detail-pagina section h4 {
+  margin: 1rem 2rem;
+  font-weight: 900;
+}
+
+#detail-pagina section div:first-of-type {
+  display: flex
+}
+
+#detail-pagina section h5 span {
+  font-family: "Noto Emoji", sans-serif;
+}
+
+#detail-pagina section h5 {
+  margin: 1rem 2rem;
+}
+
+#detail-pagina header nav {
+  position: fixed;
+  z-index: 99;
+  margin-top: 1rem;
+}
+
+#detail-pagina header nav a{
+  color: white;
+  text-decoration: none;
+  margin-left: 2rem;
+  margin-top: 2rem;
+  font-size: 2.5rem;
+  text-shadow: black 0 0 20px;
+}
+
+#index ul {
   display: flex;
   gap: .5em;
   width: 100%;
@@ -44,17 +213,19 @@ ul {
   padding: 0;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
+  opacity: 0;
   overscroll-behavior: contain auto;
+  animation: fadeIn .5s 1.5s forwards;
 }
 
-ul li {
+#index ul li {
   margin: 0;
   scroll-snap-align: center;
   border-radius: 200px;
   /* width: min(70vw, 12em); */
 }
 
-ul li img {
+#index ul li img {
   display: block;
   aspect-ratio: 2/3;
   object-fit: cover;
@@ -63,7 +234,7 @@ ul li img {
 
 }
 
-.parent {
+#index .parent {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -71,7 +242,11 @@ ul li img {
   grid-row-gap: 10px;
   justify-content: center;
   align-items: center;
+}
 
+#index h2 {
+  animation: fadeIn .5s 1s forwards;
+  opacity: 0;
 }
 
 .div1 {
@@ -83,7 +258,8 @@ ul li img {
   align-items: center;
   display: flex;
   border: solid rgba(0, 255, 255, 0) 1px;
-  animation: fadeIn .5s 4s; 
+  animation: fadeIn .5s 2s forwards;
+  opacity: 0;
 
 }
 
@@ -116,9 +292,9 @@ ul li img {
   justify-content: center;
   align-items: center;
   display: flex;
-  animation: fadeIn .5s 4.5s; 
+  animation: fadeIn .5s 2.5s forwards;
 
-
+  opacity: 0;
 
 }
 
@@ -131,7 +307,8 @@ ul li img {
   justify-content: center;
   align-items: center;
   display: flex;
-  animation: fadeIn .5s 5s; 
+  animation: fadeIn .5s 3s forwards;
+  opacity: 0;
 
 }
 
@@ -143,7 +320,8 @@ ul li img {
   justify-content: center;
   align-items: center;
   display: flex;
-  animation: fadeIn .5s 5.5s; 
+  animation: fadeIn .5s 3.5s forwards;
+  opacity: 0;
 
 
 }
@@ -156,7 +334,8 @@ ul li img {
   justify-content: center;
   align-items: center;
   display: flex;
-  animation: fadeIn .5s 6s; 
+  animation: fadeIn .5s 4s forwards;
+  opacity: 0;
 
 
 
@@ -171,10 +350,8 @@ ul li img {
   justify-content: center;
   align-items: center;
   display: flex;
-  animation: fadeIn .5s 6.5s; 
-
-
-
+  animation: fadeIn .5s 4.5s forwards;
+  opacity: 0;
 }
 
 .parent img {
@@ -186,6 +363,132 @@ ul li img {
 a {
   transition: .5s;
 }
+
+
+#detail-pagina {
+  margin: 0;
+  background: radial-gradient(circle at 50% 100%, #000dff 0%, black calc(100% - (100vw / 16 * 9)));
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  height: 100lvh;
+}
+
+/* PLYR STYLING */
+
+
+#sync-gradient {
+  position: absolute;
+  bottom: -5px;
+  width: 100%;
+  height: 4em;
+  background: linear-gradient(to bottom, rgba(0,0,0, 0), black);
+}
+
+#gradient-container {
+  position: relative;
+}
+
+#gradient-container img {
+  position: absolute;
+  top: 0;
+  opacity: 1;
+  z-index: 99;
+  animation: fadeOut .5s 5s forwards ;
+}
+
+.plyr--video {
+  pointer-events: none;
+  position: absolute;
+  top: -50%;
+	height: 200%;
+  opacity: 1;
+  z-index: 98;
+}
+
+#gradient-container #box {
+  width: 100%;
+  height: 250px;
+  background-color: black;
+  position: absolute;
+  z-index: 98;
+  animation: fadeOut .5s 1s forwards;
+}
+
+
+.plyr__video-embed iframe, .plyr__video-wrapper--fixed-ratio video {
+  transform: scale(1.5);
+    animation: fadeIn .5s 5s forwards;
+  opacity: 0;
+}
+
+
+/* Detail-page title */ 
+
+#detail-pagina section {
+  translate: 0 -2em;
+  position: relative;
+  z-index: 100;
+}
+
+#detail-pagina section h1 {
+  margin: 1rem 2rem;
+  font-size: clamp(1.5rem, 2rem, calc(2rem - 0.1rem * (100vw - 320px)));
+  margin-top: 0;
+}
+
+#detail-pagina section h2 {
+  margin: 0 0 0 1em;
+  font-size: 2em;
+}
+
+#detail-pagina section div:first-of-type button {
+  background-color: var(--blue-color);
+  border: none;
+  color: white;
+  padding: 1em 2em;
+  font-size: 1rem;
+  margin-left: 2rem;
+  border-radius: .5rem;
+  margin-bottom: 1rem;
+}
+
+#detail-pagina section div button a { 
+  text-decoration: none;
+}
+
+#detail-pagina section div button a:visited {
+  color: var(--blue-color);
+} 
+
+#detail-pagina section div:first-of-type button:nth-of-type(2) {
+  color: var(--blue-color);
+  border: none;
+  background-color: white;
+  padding: 1em 2em;
+  font-size: 1rem;
+  margin-left: 2rem;
+  border-radius: .5rem;
+  margin-bottom: 1rem;
+}
+
+#detail-pagina #gradient-container p {
+  margin: 0;
+}
+
+#detail-pagina p {
+  margin: 0 2rem;
+  line-height: 1.7em;
+  font-size: .8em;
+}
+
+@keyframes horizontal-shaking {
+  0% { transform: translateX(0) }
+  25% { transform: translateX(5px) }
+  50% { transform: translateX(-5px) }
+  75% { transform: translateX(5px) }
+  100% { transform: translateX(0) }
+ }
 
 
 @keyframes gradient-animation {
@@ -203,19 +506,30 @@ a {
 }
 
 @keyframes fadeIn {
-  from
-   {
+  from {
     opacity: 0;
-   }
-   to {
+  }
+
+  to {
     opacity: 1;
-   }
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
 }
 
 @keyframes slideIn {
   from {
     transform: translateX(-100px);
   }
+
   to {
     transform: translateX(0);
   }
@@ -223,6 +537,6 @@ a {
 
 @keyframes sizeBig {
   50% {
-     transform: scale(1.2);
+    transform: scale(1.2);
   }
 }
