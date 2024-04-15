@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body id="results">
+
+    <% if (queryResults && queryResults.length> 0) { %>
+        <h2>Zoekresultaten:</h2>
+        <ul>
+            <% queryResults.forEach(result=> { %>
+                <li><a href="/detail/<%= result.id %>">
+                        <!-- Weergeef alleen de titel en thumbnail van de film -->
+
+                        <div id="searchBox">
+                            <% if (result.poster_path) { %>
+                                <div class="image-container">
+                                    <img src="https://image.tmdb.org/t/p/w500<%= result.poster_path %>"
+                                        alt="<%= result.title %>">
+                                </div>
+                                <div id="movie-description">
+                                    <h3>
+                                        <%= result.title %>
+                                    </h3>
+                                    <p>
+                                        <%= (new Date(result.release_date)).getFullYear() %>
+                                    </p>
+                                </div>
+                        </div>
+                        <% } else { %>
+                            <p class="no-poster">
+                                <%= result.title %>
+                            </p>
+                            <% } %>
+                    </a>
+                </li>
+                <% }); %>
+        </ul>
+        <% } else { %>
+            <p>Geen zoekresultaten gevonden.</p>
+            <% } %>
+</body>
+
+</html>

@@ -11,7 +11,7 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 app.get('/', (req, res) => {
-  const urlTrending = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_year=2010&sort_by=popularity.desc';
+  const urlTrending = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc';
   const urlTopRated = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
 
   const options = {
@@ -44,14 +44,70 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/disney', (req, res) => {
+  const urlTrending = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_companies=3166';
+  const urlFrom2005 = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&primary_release_date.lte=1950&with_companies=3166';
+
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${process.env.MOVIEDB_TOKEN}`
+    }
+  };
+
+  // Fetch data from the first URL
+  fetch(urlTrending, options)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(trendingJson => {
+      // Fetch data from the second URL
+      fetch(urlFrom2005, options)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(from2005Json => {
+          console.log(trendingJson, from2005Json);
+          res.render('disney.ejs', {
+            filmlijst: trendingJson.results || [], // Renamed 'movies' to 'filmlijst'
+            searchResults: [], // Voeg een lege array toe voor searchResults
+            filmsFrom2005: from2005Json.results || [] // Films vanaf 2005
+          });
+        })
+        .catch(err => {
+          console.error('error:' + err);
+          res.render('disney.ejs', {
+            filmlijst: [], // Renamed 'movies' to 'filmlijst'
+            searchResults: [], // Voeg een lege array toe voor searchResults
+            filmsFrom2005: [] // Films vanaf 2005
+          });
+        });
+    })
+    .catch(err => {
+      console.error('error:' + err);
+      res.render('disney.ejs', {
+        filmlijst: [], // Renamed 'movies' to 'filmlijst'
+        searchResults: [], // Voeg een lege array toe voor searchResults
+        filmsFrom2005: [] // Films vanaf 2005
+      });
+    });
+});
+
+
 
 // Dynamische routing via een id 
-app.get('/search', (req, res) => {
-  const searchQuery = req.query.search;
-  const year = 2010;
+app.get('/results/search', (req, res) => {
+  const searchQuery = req.query.term;
 
   // Zoekopdracht met release_date.lte-parameter
-  const urlSearch = `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&include_adult=false&language=en-US&page=1&release_date.lte=${year}`;
+  const urlSearch = `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&include_adult=false&language=en-US&page=1`;
   const options = {
     method: 'GET',
     headers: {
@@ -63,16 +119,20 @@ app.get('/search', (req, res) => {
   fetch(urlSearch, options)
     .then(res => res.json())
     .then(data => {
-      const searchResults = data.results.filter(movie => movie.release_date.slice(0, 4) < year); // Filter films die vóór het jaar 2000 zijn
-      res.render('index.ejs', {
+
+      const searchResults = data.results.filter(movie => 
+        movie.poster_path !== null
+        ); // Filter films die vóór het jaar 2000 zijn en een poster hebben
+        console.log(searchResults);
+      
+      res.render('results.ejs', {
         title: `Search results for '${searchQuery}'`,
-        searchResults: searchResults // Gebruik de variabele searchResults hier
+        queryResults: searchResults // Gebruik de variabele searchResults hier
       });
 
     })
     .catch(err => console.error('error:' + err));
 });
-
 
 app.get('/detail/:movie_id', (req, res) => {
   const movieId = req.params.movie_id;
@@ -113,24 +173,6 @@ app.get('/detail/:movie_id', (req, res) => {
     });
 });
 
-// app.get('/search', async (req, res) => {
-//   const searchTerm = req.query.term;
-//   const urlResults = 'https://api.themoviedb.org/3/search/movie?query=${searchTerm}&include_adult=false&language=en-US&page=1api_key=${process.env.API_KEY}`';
-//   const options = {
-//     method: 'GET',
-//     headers: {
-//       accept: 'application/json'
-//     }
-//   };
-
-//   fetch(urlResults, options)
-//     .then(res => res.json())
-//     .then(json => 
-      
-
-//       console.log(json))
-//     .catch(err => console.error('error:' + err));
-// });
 
 app.use((req, res, next) => {
   res.status(404).render('404');

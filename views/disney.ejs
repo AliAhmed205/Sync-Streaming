@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disney</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body id="index">
+    <header>
+    </header>
+    <main>
+        <h2>Experience the disney magic</h2>
+        <% if (filmlijst && filmlijst.length > 0) { %>
+            <h2>Disney Classics</h2>
+          <ul>
+            <% filmlijst.forEach(film => { %>
+            <li>
+              <% if (film.poster_path) { %>
+              <a href="/detail/<%= film.id %>"><img src="https://image.tmdb.org/t/p/w500<%= film.poster_path %>" alt="<%= film.title %>"></a>
+              <% } else { %>
+              <p>No poster available</p>
+              <% } %>
+              <!-- <h3><%= film.title %></h3> -->
+            </li>
+        
+            <% }); %>
+          </ul>
+          <% } else { %>
+          <p>Er zijn geen films beschikbaar op dit moment.</p>
+          <% } %>
+
+                  <!-- Films vanaf 2005 -->
+        <% if (filmsFrom2005 && filmsFrom2005.length > 0) { %>
+            <h2>Films from 2005 onwards</h2>
+            <ul>
+                <% filmsFrom2005.forEach(film => { %>
+                    <li>
+                        <% if (film.poster_path) { %>
+                            <a href="/detail/<%= film.id %>"><img src="https://image.tmdb.org/t/p/w500<%= film.poster_path %>" alt="<%= film.title %>"></a>
+                        <% } else { %>
+                            <p>No poster available</p>
+                        <% } %>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <p>No films available from 2005 onwards.</p>
+        <% } %>
+        
+    </main>
+    <footer>
+    </footer>
+</body>
+</html>
