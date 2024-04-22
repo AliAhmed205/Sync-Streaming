@@ -1,19 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Fahkwang:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Fredoka:wght@300..700&family=Noto+Emoji:wght@300..700&display=swap');
 
+@font-face {
+  font-family: 'Disney';
+  src: url("/fonts/disney.ttf");
+}
+
+
 :root {
   --blue-color: oklch(46.85% 0.31321437166460125 264.052020638055);
 }
 
+
+
 body {
   /* background: rgb(0, 12, 233); */
   background: radial-gradient(#000dff 0%, black 100%);
-  margin: 1.5em;
+  margin: 0;
   background-attachment: fixed;
   color: white;
   font-family: "Comfortaa", sans-serif;
   max-width: 100%;
   overflow-x: hidden;
 }
+
+
+
 
 .searchNav {
   width: 100%;
@@ -27,29 +38,28 @@ body {
   pointer-events: none;
   transition: .5s;
   display: flex;
+
+  input {
+    width: 70vw;
+    padding: 1rem;
+    margin: 1em;
+    background-color: transparent;
+    border: none;
+    border-bottom: .1rem solid var(--blue-color);
+    color: white;
+    font-size: 1.4rem;
+  }
+
+  input:focus {
+    outline: none;
+    /* border: solid cyan 1px; */
+    /* box-shadow: cyan 0 0 10px; */
+  }
 }
 
 .searchNav.active {
   pointer-events: all;
   opacity: 1;
-}
-
-
-.searchNav input {
-  width: 70vw;
-  padding: 1rem;
-  margin: 1em;
-  background-color: transparent;
-  border: none;
-  border-bottom: .1rem solid var(--blue-color);
-  color: white;
-  font-size: 1.4rem;
-}
-
-.searchNav input:focus {
-  outline: none;
-  /* border: solid cyan 1px; */
-  /* box-shadow: cyan 0 0 10px; */
 }
 
 input::placeholder {
@@ -66,29 +76,30 @@ input::placeholder {
   margin-top: 1.5rem;
 }
 
-#index nav {
+nav {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
-}
 
-#index nav h1 {
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 0;
-  margin-bottom: 0;
-}
+  h1 {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 
-#index nav button {
-  font-family: "Noto Emoji", sans-serif;
-  color: white;
-  font-size: 1.5rem;
-  margin-top: 0;
-  border: none;
-  background-color: transparent;
-  opacity: 0;
-  animation: fadeIn .5s 1s forwards;
+  button {
+    font-family: "Noto Emoji", sans-serif;
+    color: white;
+    font-size: 1.5rem;
+    margin-top: 0;
+    border: none;
+    background-color: transparent;
+    opacity: 0;
+    animation: fadeIn .5s 1s forwards;
+  }
+
 }
 
 #unsynced {
@@ -99,77 +110,66 @@ input::placeholder {
   max-width: 100%;
   overflow-x: hidden;
   margin: 0;
+
+  nav {
+    display: flex;
+    justify-content: center;
+    animation: horizontal-shaking .5s .5s forwards;
+    position: relative;
+    font-size: 1.5em;
+  }
+
+  div {
+    width: 100%;
+    height: 100lvh;
+    position: absolute;
+    top: 0;
+    background: radial-gradient(#000dff 0%, black 100%);
+    z-index: -1;
+    animation: fadeOut 1s 1s forwards;
+  }
+  main {
+    text-align: center;
+
+    h2 {
+      font-size: 5rem;
+      opacity: 0;
+      margin: 0;
+      animation: fadeIn .5s 1s forwards;
+    } 
+    
+    h3 {
+      font-size: 1.5rem;
+      width: 70%;
+      margin: 1rem auto 0 auto;
+      opacity: 0;
+      animation: fadeIn .5s 1s forwards;
+    }
+
+    p:first-of-type {
+      width: 70%;
+      margin: 2rem auto;
+      opacity: 0;
+      animation: fadeIn .5s 1.5s forwards;
+    }    
+
+    p:last-of-type {
+      width: 70%;
+      margin: 2rem auto;
+      font-size: 4rem;
+      opacity: 0;
+      animation: fadeIn .5s 2s forwards;
+    
+    }
+  }
 }
 
-#server-error {
-  background: radial-gradient(#323232 0%, black 100%);
-  background-attachment: fixed;
-  color: white;
-  font-family: "Comfortaa", sans-serif;
-  max-width: 100%;
-  overflow-x: hidden;
-  margin: 0;
-}
-
-#unsynced div {
-  width: 100%;
-  height: 100lvh;
-  position: absolute;
-  top: 0;
-  background: radial-gradient(#000dff 0%, black 100%);
-  z-index: -1;
-  animation: fadeOut 1s 1s forwards;
-}
-
-#unsynced nav {
-  display: flex;
-  justify-content: center;
-  animation: horizontal-shaking .5s .5s forwards;
-  position: relative;
-  font-size: 1.5em;
-}
 
 #results h3 {
   font-size: .9rem;
 }
 
-
-#unsynced main {
-  text-align: center;
-}
-
-#unsynced main h2 {
-  font-size: 5rem;
-  opacity: 0;
-  margin: 0;
-  animation: fadeIn .5s 1s forwards;
-}
-
-#unsynced main h3 {
-  font-size: 1.5rem;
-  width: 70%;
-  margin: 1rem auto 0 auto;
-  opacity: 0;
-  animation: fadeIn .5s 1s forwards;
-}
-
-#unsynced main p:first-of-type {
-  width: 70%;
-  margin: 2rem auto;
-  opacity: 0;
-  animation: fadeIn .5s 1.5s forwards;
-}
-
-#unsynced main p:last-of-type{
-  width: 70%;
-  margin: 2rem auto;
-  font-size: 4rem;
-  opacity: 0;
-  animation: fadeIn .5s 2s forwards;
-
-}
-
-#index h1 {
+h1 {
   margin: .5em 0;
   display: flex;
   justify-content: center;
@@ -180,16 +180,17 @@ input::placeholder {
   animation: fadeIn 1s 1s ease-in-out forwards,
     slideIn 1s 1s forwards;
   gap: .5em;
+
+  p {
+    font-family: "Noto Emoji", sans-serif;
+    font-size: .8em;
+    animation: pop 0.3s 2s linear 1, fadeIn 0.3s 2s forwards;
+    opacity: 0;
+    /* transform: scale(1) */
+  
+  }
 }
 
-#index h1 p {
-  font-family: "Noto Emoji", sans-serif;
-  font-size: .8em;
-  animation: pop 0.3s 2s linear 1, fadeIn 0.3s 2s forwards;
-  opacity: 0;
-  /* transform: scale(1) */
-
-}
 
 h3 {
   margin: 0 2rem 1rem 2rem;
@@ -218,7 +219,7 @@ h3 {
   margin-top: 1rem;
 }
 
-#detail-pagina header nav a{
+#detail-pagina header nav a {
   color: white;
   text-decoration: none;
   margin-left: 2rem;
@@ -227,7 +228,7 @@ h3 {
   text-shadow: black 0 0 20px;
 }
 
-#index ul {
+ul {
   display: flex;
   gap: .5em;
   width: 100%;
@@ -239,25 +240,24 @@ h3 {
   opacity: 0;
   overscroll-behavior: contain auto;
   animation: fadeIn .5s 1.5s forwards;
+
+  li {
+    margin: 0;
+    scroll-snap-align: center;
+    border-radius: 200px;
+
+    img {
+      display: block;
+      aspect-ratio: 2/3;
+      object-fit: cover;
+      width: 8em;
+      border-radius: .5em;
+    }
+  }
 }
 
-#index ul li {
-  margin: 0;
-  scroll-snap-align: center;
-  border-radius: 200px;
-  /* width: min(70vw, 12em); */
-}
 
-#index ul li img {
-  display: block;
-  aspect-ratio: 2/3;
-  object-fit: cover;
-  width: 8em;
-  border-radius: .5em;
-
-}
-
-#index .parent {
+.parent {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -267,9 +267,11 @@ h3 {
   align-items: center;
 }
 
-#index h2 {
+h2 {
   animation: fadeIn .5s 1s forwards;
   opacity: 0;
+  font-family: 'Disney';
+  font-size: 2rem;
 }
 
 .div1 {
@@ -377,10 +379,11 @@ h3 {
   opacity: 0;
 }
 
-.parent img {
-  width: 60%;
-  transition: 0.5s;
-
+.parent {
+  img {
+    width: 60%;
+    transition: 0.5s;
+  } 
 }
 
 a {
@@ -405,7 +408,7 @@ a {
   bottom: -5px;
   width: 100%;
   height: 4em;
-  background: linear-gradient(to bottom, rgba(0,0,0, 0), black);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), black);
 }
 
 #gradient-container {
@@ -417,14 +420,14 @@ a {
   top: 0;
   opacity: 1;
   z-index: 99;
-  animation: fadeOut .5s 5s forwards ;
+  animation: fadeOut .5s 5s forwards;
 }
 
 .plyr--video {
   pointer-events: none;
   position: absolute;
   top: -50%;
-	height: 200%;
+  height: 200%;
   opacity: 1;
   z-index: 98;
 }
@@ -439,14 +442,15 @@ a {
 }
 
 
-.plyr__video-embed iframe, .plyr__video-wrapper--fixed-ratio video {
+.plyr__video-embed iframe,
+.plyr__video-wrapper--fixed-ratio video {
   transform: scale(1.5);
-    animation: fadeIn .5s 5s forwards;
+  animation: fadeIn .5s 5s forwards;
   opacity: 0;
 }
 
 
-/* Detail-page title */ 
+/* Detail-page title */
 
 #detail-pagina section {
   translate: 0 -2em;
@@ -518,13 +522,13 @@ a {
   margin-bottom: 1rem;
 }
 
-#detail-pagina section div button a { 
+#detail-pagina section div button a {
   text-decoration: none;
 }
 
 #detail-pagina section div button a:visited {
   color: var(--blue-color);
-} 
+}
 
 #detail-pagina section div:first-of-type button:nth-of-type(2) {
   color: var(--blue-color);
@@ -548,12 +552,26 @@ a {
 }
 
 @keyframes horizontal-shaking {
-  0% { transform: translateX(0) }
-  25% { transform: translateX(5px) }
-  50% { transform: translateX(-5px) }
-  75% { transform: translateX(5px) }
-  100% { transform: translateX(0) }
- }
+  0% {
+    transform: translateX(0)
+  }
+
+  25% {
+    transform: translateX(5px)
+  }
+
+  50% {
+    transform: translateX(-5px)
+  }
+
+  75% {
+    transform: translateX(5px)
+  }
+
+  100% {
+    transform: translateX(0)
+  }
+}
 
 
 @keyframes gradient-animation {

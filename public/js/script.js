@@ -2,7 +2,6 @@ if (window.Plyr) {
     const player = new Plyr('#player');
 
     player.on('ready', () => {
-        console.log('Ali is gek')
         player.muted = true
         console.log();
         player.play()

@@ -1,55 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disney</title>
-    <link rel="stylesheet" href="/css/index.css">
-</head>
-<body id="index">
-    <header>
-    </header>
-    <main>
-        <h2>Experience the disney magic</h2>
-        <% if (filmlijst && filmlijst.length > 0) { %>
-            <h2>Disney Classics</h2>
-          <ul>
-            <% filmlijst.forEach(film => { %>
-            <li>
-              <% if (film.poster_path) { %>
-              <a href="/detail/<%= film.id %>"><img src="https://image.tmdb.org/t/p/w500<%= film.poster_path %>" alt="<%= film.title %>"></a>
-              <% } else { %>
-              <p>No poster available</p>
-              <% } %>
-              <!-- <h3><%= film.title %></h3> -->
-            </li>
-        
-            <% }); %>
-          </ul>
-          <% } else { %>
-          <p>Er zijn geen films beschikbaar op dit moment.</p>
-          <% } %>
+<%- include('head.ejs') %>
 
-                  <!-- Films vanaf 2005 -->
-        <% if (filmsFrom2005 && filmsFrom2005.length > 0) { %>
-            <h2>Films from 2005 onwards</h2>
-            <ul>
-                <% filmsFrom2005.forEach(film => { %>
-                    <li>
-                        <% if (film.poster_path) { %>
-                            <a href="/detail/<%= film.id %>"><img src="https://image.tmdb.org/t/p/w500<%= film.poster_path %>" alt="<%= film.title %>"></a>
-                        <% } else { %>
-                            <p>No poster available</p>
-                        <% } %>
-                    </li>
-                <% }); %>
-            </ul>
+<body id="unique">
+  <header>
+    <img src="images/rose-n-flowers.webp" alt="Roses-and-flowers">
+    <img src="images/rose-n-flowers.webp" alt="Roses-and-flowers">
+    <nav>
+      <h1>Disney</h1>
+    </nav>
+  </header>
+  <main id="disney">
+    <img src="images/bird.gif" alt="birds">
+    <% if (filmlijst && filmlijst.length > 0) { %>
+        <h2>Discover</h2>
+        <ul>
+          <% for (let i = filmlijst.length - 1; i >= 0; i--) { %>
+          <li>
+            <% const film = filmlijst[i]; %>
+            <% if (film.backdrop_path) { %>
+                <h3><%= film.title %></h3>
+            <a href="/detail/<%= film.id %>">
+                <div id="disneyGardient"></div>
+                <img src="https://image.tmdb.org/t/p/w500<%= film.backdrop_path %>" alt="<%= film.title %>">
+                <p><%= film.overview.split(/[.;]/)[0] %></p>
+            </a>
+            <% } else { %>
+            <p>No poster available</p>
+            <% } %>
+          </li>
+          <% } %>
+        </ul>
         <% } else { %>
-            <p>No films available from 2005 onwards.</p>
+        <p>Er zijn geen films beschikbaar op dit moment.</p>
         <% } %>
-        
-    </main>
-    <footer>
-    </footer>
+
+    <% if (filmlijst && filmlijst.length > 0) { %>
+    <h2>Disney Classics</h2>
+    <ul>
+      <% filmlijst.forEach(film => { %>
+      <li>
+        <% if (film.poster_path) { %>
+        <a href="/detail/<%= film.id %>"><img src="https://image.tmdb.org/t/p/w500<%= film.poster_path %>"
+            alt="<%= film.title %>"></a>
+        <% } else { %>
+        <p>No poster available</p>
+        <% } %>
+        <!-- <h3><%= film.title %></h3> -->
+      </li>
+
+      <% }); %>
+    </ul>
+    <% } else { %>
+    <p>Er zijn geen films beschikbaar op dit moment.</p>
+    <% } %>
+
+    <!-- Films vanaf 2005 -->
+    <% if (filmsFrom2005 && filmsFrom2005.length > 0) { %>
+    <h2>Comedy</h2>
+    <ul>
+      <% filmsFrom2005.forEach(film => { %>
+      <li>
+        <% if (film.poster_path) { %>
+        <a href="/detail/<%= film.id %>"><img src="https://image.tmdb.org/t/p/w500<%= film.poster_path %>"
+            alt="<%= film.title %>"></a>
+        <% } else { %>
+        <p>No poster available</p>
+        <% } %>
+      </li>
+      <% }); %>
+    </ul>
+    <% } else { %>
+    <p>No films available from 2005 onwards.</p>
+    <% } %>
+
+  </main>
+  <footer>
+    <nav>
+        <ul>
+            <li>
+                <a href="/">🏠</a>
+            </li>
+            <li>
+                <button type="button">🔍</button>
+            </li>
+            <li>
+                <button type="button" id="magicBtn">🪄</button>
+            </li>
+        </ul>
+    </nav>
+  </footer>
+  <div id="glitterBackground"></div>
+  <script src="js/disney.js"></script>
 </body>
+
 </html>

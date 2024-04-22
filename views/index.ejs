@@ -2,13 +2,12 @@
 <html lang="en">
 <%- include('head.ejs') %>
 
-<body id="index">
+<body>
+  <header>
   <nav>
   <h1>sync</h1>
   <button type="button" id="searchIcon">🔍</button>
   </nav>
-
-
   <section class="searchNav">
     <form id="search-form" action="/results/search" method="get">
       <label for="searching"></label>
@@ -16,7 +15,8 @@
   </form>
   <button type="button" id="cancelButton">&#x2715;</button>
   </section>
-
+</header>
+<main>
   <div class="parent">
     <a href="/disney" class="div1"><img src="/images/white-disney.svg" alt="universal-studios"></a>
     <a href="/" class="div2"><img src="/images/white-sony.svg" alt="universal-studios"></a>
@@ -64,6 +64,12 @@
   <% } else { %>
   <p>Er zijn geen top-rated films beschikbaar op dit moment.</p>
   <% } %>
+</main>
+<footer>
+      <section>
+        <p>Ali Ahmed 2024</p>
+      </section>
+</footer>
 
 
   <script src="/js/script.js"></script>

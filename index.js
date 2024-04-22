@@ -46,8 +46,7 @@ app.get('/', (req, res) => {
 
 app.get('/disney', (req, res) => {
   const urlTrending = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_companies=3166';
-  const urlFrom2005 = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&primary_release_date.lte=1950&with_companies=3166';
-
+  const urlFrom2005 = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&primary_release_date.gte=2010-01-01&primary_release_date.lte=2020-01-01&sort_by=original_title.asc&with_companies=3166%7C104966%7C5391%7C15935%7C81026%7C126540%7C40148%7C171656%7C171657%7C101999%7C109755%7C112779%7C158079%7C158526%7C88716%7C91233%7C135745%7C52126%7C107038%7C107039';
   const options = {
     method: 'GET',
     headers: {
@@ -176,10 +175,6 @@ app.get('/detail/:movie_id', (req, res) => {
 
 app.use((req, res, next) => {
   res.status(404).render('404');
-});
-
-app.use((err, req, res, next) => {
-  res.status(500).render('500');
 });
 
 
