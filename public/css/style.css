@@ -6,6 +6,11 @@
   src: url("/fonts/disney.ttf");
 }
 
+@font-face {
+  font-family: 'Sony';
+  src: url("/fonts/sony.otf");
+}
+
 * {
   margin: 0;
   box-sizing: border-box;
@@ -312,12 +317,19 @@ main {
     display: flex;
   }
 
+  h2 {
+    animation: none;
+    opacity: 1;
+  }
+
   ul {
     list-style: none;
     padding: 0;
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    animation: none;
+    opacity: 1;
 
     img {
       width: 6rem;
@@ -336,6 +348,7 @@ main {
 
   h3 {
     font-size: .9rem;
+
   }
 
   #movie-description {
@@ -348,8 +361,6 @@ main {
   a {
     text-decoration: none;
   }
-
-
 }
 
 
@@ -534,6 +545,14 @@ main {
 
 #disney {
   position: relative;
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 1rem 1rem 10rem;
+
+  h2:first-of-type {
+    font-size: 1.5rem;
+  }
 
   >img {
     position: absolute;
@@ -542,6 +561,7 @@ main {
     pointer-events: none;
     z-index: 1;
     width: 10rem;
+
   }
 
   h2 {
@@ -574,7 +594,7 @@ main {
       position: relative;
       box-shadow: black 0 0 20px;
 
-      
+
       img {
         display: block;
         width: 24.7em;
@@ -612,7 +632,7 @@ main {
       }
 
       h3 {
-        bottom: 134px;
+        bottom: 174px;
         z-index: 1;
         transition: .5s;
       }
@@ -672,33 +692,30 @@ main {
   }
 
   header {
-
     position: relative;
+    max-width: 100%;
+    overflow: hidden;
 
-    >img:nth-of-type(1) {
+    >img {
       position: absolute;
       top: -2rem;
       width: 6rem;
-      left: -2rem;
+      height: 6rem;
       rotate: 30deg;
-      animation: FlowerAnimationLeft 1s 1.5s forwards;
-      translate: -4rem 0;
       transition: .5s;
+
     }
 
-    img:hover {
-      transform: scale(1.5);
+    >img:nth-of-type(1) {
+      left: -2rem;
+      animation: FlowerAnimationLeft 1s 1.5s forwards;
+      translate: -4rem 0;
     }
 
     >img:nth-of-type(2) {
-      position: absolute;
-      top: -2rem;
-      width: 6rem;
       right: -2rem;
-      rotate: 30deg;
       animation: FlowerAnimationRight 1s 1s forwards;
       translate: 4rem 0;
-      transition: .5s;
     }
 
     nav {
@@ -722,7 +739,9 @@ main {
   footer {
 
     position: fixed;
-    bottom: 0rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
     nav {
       background-color: black;
@@ -734,12 +753,12 @@ main {
         padding: 0;
         align-items: center;
         position: relative;
-        
+
         li {
           list-style-type: none;
           padding: 2rem;
           font-size: 1.2rem;
-          
+
           a {
             color: white;
             text-decoration: none;
@@ -757,7 +776,7 @@ main {
             text-align: center;
             padding: 0;
           }
-          
+
 
           .magicStyle {
             font-family: var(--sync-emoji-font);
@@ -773,6 +792,176 @@ main {
   }
 }
 
+
+/****************/
+/* Sony Styling */
+/****************/
+
+#sony-header {
+
+  nav {
+
+    h1 {
+      font-family: 'Sony';
+      text-transform: uppercase;
+      letter-spacing: .5rem;
+    }
+  }
+}
+
+#sony {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1rem 9rem;
+
+  h2:first-of-type {
+    font-size: 1.5rem;
+  }
+
+
+  ul:first-of-type {
+
+    overflow-y: hidden;
+
+    li {
+      position: relative;
+      box-shadow: black 0 0 20px;
+
+
+      img {
+        display: block;
+        width: 24.7em;
+        border-radius: .5em;
+        aspect-ratio: unset;
+      }
+
+      p {
+        position: absolute;
+        z-index: 2;
+        top: 130px;
+        font-size: .7rem;
+        color: white;
+        margin: 1rem;
+        opacity: 0;
+        transition: .5s;
+      }
+
+      h3 {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        margin: 0 0 1rem 1rem;
+        transition: .5s;
+        font-size: 1rem;
+        z-index: 2;
+      }
+    }
+
+
+
+    li:hover,
+    li:focus-within {
+
+      img {
+        filter: brightness(.5);
+      }
+
+      h3 {
+        bottom: 174px;
+        z-index: 1;
+        transition: .5s;
+      }
+
+      p {
+        top: 32px;
+        opacity: 1;
+      }
+    }
+
+  }
+
+  ul:nth-of-type(2){
+    margin: 0;
+  }
+}
+
+#footerSony {
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  nav {
+    background-color: black;
+    width: 100vw;
+
+    ul {
+      display: flex;
+      justify-content: space-around;
+      padding: 0;
+      align-items: center;
+      position: relative;
+
+      li {
+        list-style-type: none;
+        padding: 2rem;
+        font-size: 1.2rem;
+
+        a {
+          color: white;
+          text-decoration: none;
+          font-family: var(--sync-emoji-font);
+
+        }
+
+        button {
+          font-family: var(--sync-emoji-font);
+          background: transparent;
+          color: white;
+          border: none;
+          font-size: 1.2rem;
+          transition: .5s;
+          text-align: center;
+          padding: 0;
+        }
+
+
+        .sonyStyle {
+          font-family: var(--sync-emoji-font);
+          background: transparent;
+          color: yellow;
+          text-shadow: yellow 0 0 5px;
+          border: none;
+          padding: 0;
+        }
+      }
+    }
+  }
+}
+
+#sonyBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: -1;
+  background-image: url("/images/abstract.jpg");
+  background-size: cover;
+  background-position: 50% 100%;
+  opacity: 1;
+  animation: backgroundShift 2s forwards ease-in-out;
+  filter: blur(2);
+  rotate: 180deg;
+}
+
+.sony {
+  animation: sonyAnimation 2s forwards;
+  width: 40%;
+  padding: 1rem;
+  height: fit-content;
+}
 
 
 
@@ -796,12 +985,236 @@ footer {
   }
 }
 
+
+/********************/
+/* Paramount Styling */
+/********************/
+
+
+#paramount-header {
+  
+  nav {
+    svg {
+      fill: white;
+      width: 50%;
+      padding: 1rem;
+      animation: fadeIn 1s 2s forwards;
+      opacity: 0;
+    }
+  }
+}
+
+#paramount {
+  display: flex;
+  flex-direction: column;
+  padding: 0rem 1rem 9rem;
+  position: relative;
+  margin-top: 0;
+
+  h2:first-of-type {
+    font-size: 1.5rem;
+  }
+
+  >svg {
+    z-index: -1;
+    position: fixed;
+    bottom: 0rem;
+    animation: mountainRise 2s forwards
+  }
+
+  ul:first-of-type {
+
+    overflow-y: hidden;
+
+    li {
+      position: relative;
+      box-shadow: black 0 0 20px;
+
+
+      img {
+        display: block;
+        width: 24.7em;
+        border-radius: .5em;
+        aspect-ratio: unset;
+      }
+
+      p {
+        position: absolute;
+        z-index: 2;
+        top: 130px;
+        font-size: .7rem;
+        color: white;
+        margin: 1rem;
+        opacity: 0;
+        transition: .5s;
+      }
+
+      h3 {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        margin: 0 0 1rem 1rem;
+        transition: .5s;
+        font-size: 1rem;
+        z-index: 2;
+      }
+    }
+
+
+
+    li:hover,
+    li:focus-within {
+
+      img {
+        filter: brightness(.5);
+      }
+
+      h3 {
+        bottom: 174px;
+        z-index: 1;
+        transition: .5s;
+      }
+
+      p {
+        top: 32px;
+        opacity: 1;
+      }
+    }
+
+  }
+
+  ul:nth-of-type(2){
+    margin: 0;
+  }
+}
+
+#footerParamount {
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  nav {
+    background-color: black;
+    width: 100vw;
+
+    ul {
+      display: flex;
+      justify-content: space-around;
+      padding: 0;
+      align-items: center;
+      position: relative;
+
+      li {
+        list-style-type: none;
+        padding: 2rem;
+        font-size: 1.2rem;
+
+        a {
+          color: white;
+          text-decoration: none;
+          font-family: var(--sync-emoji-font);
+
+        }
+
+        button {
+          font-family: var(--sync-emoji-font);
+          background: transparent;
+          color: white;
+          border: none;
+          font-size: 1.2rem;
+          transition: .5s;
+          text-align: center;
+          padding: 0;
+        }
+
+
+        .sonyStyle {
+          font-family: var(--sync-emoji-font);
+          background: transparent;
+          color: yellow;
+          text-shadow: yellow 0 0 5px;
+          border: none;
+          padding: 0;
+        }
+      }
+    }
+  }
+}
+
+#paramountBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: -1;
+  /* background: linear-gradient(#060630 0%, rgb(255, 255, 255) 100%); */
+  background-image: url("/images/snowoverlay.gif");
+  background-size: cover;
+  background-position: 50% 100%;
+  opacity: .5;
+  filter: blur(2);
+}
+
+#paramountBG {
+  background: linear-gradient(#103a6a 0%, #acd1ff 100%);
+  background-image: no-repeat;
+  background-attachment: fixed;  
+}
+
+
 /* ***************/
 /*   Animation   */
 /* ***************/
 
 .play-audio-on-animation {
   animation: playAudioAnimation 1s forwards;
+}
+
+
+@keyframes mountainRise {
+  0% {
+    bottom: 0;
+    scale: 1;
+  }
+  0%, 10%, 20%, 30%, 40%, 50%, 60%, 70%, 90% {
+    transform: translateX(-1px)
+  }
+  15%, 25%, 35%, 45%, 55%, 65%, 75%, 85% {
+    transform: translateX(1px)
+  }
+  100% {
+    bottom: 10rem;
+    opacity: .5;
+    scale: 2;
+  }
+}
+
+@keyframes backgroundShift {
+  from {
+    background-position: 1% 200%;
+
+  }
+
+  to {
+    background-position: 50% 100%;
+
+  }
+}
+
+@keyframes sonyAnimation {
+  from {
+    opacity: 0;
+    filter: drop-shadow(0 0 5px white);
+  }
+
+  to {
+    opacity: 1;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0));
+    fill: white;
+  }
 }
 
 @keyframes playAudioAnimation {
