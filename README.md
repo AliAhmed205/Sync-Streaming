@@ -15,10 +15,8 @@
 | Features | 
 | ----------- | 
 | Loading the MovieDB API | 
-| Filter on release year  |
 | Filter on movie studio |
 | Search through your own prompt |
-| Push notifications API |
 | Page transition API |
 
 <p>Sync is a cutting-edge streaming service that revolutionizes your movie-watching experience with innovative features:</p>
