@@ -44,8 +44,44 @@ app.get('/', (req, res) => {
     })
 })
 
+// app.get('/paramount', (req, res) => {
+//   const urlParamount = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_companies=4';
+
+//   const options = {
+//     method: 'GET',
+//     headers: {
+//       accept: 'application/json',
+//       Authorization: `Bearer ${process.env.MOVIEDB_TOKEN}`
+//     }
+//   }
+
+//   fetch(urlParamount, options)
+//     .then(response => {
+//       if (!response.ok) {
+//         throw new Error('Network response was not ok')
+//       }
+//       return response.json()
+//     })
+//     .then(paramountJson => {
+//       res.render('paramount.ejs', {
+//         paramountLijst: paramountJson.results || [], 
+//       })
+//     })
+//     .catch(err => {
+//       console.error('error:' + err)
+//       res.render('paramount.ejs', {
+//         paramountLijst: [], 
+//       })
+//     })
+// })
+
+
+
 app.get('/paramount', (req, res) => {
-  const urlParamount = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_companies=4';
+  const urlparamount = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_companies=4';
+  const urlparamountAnimation = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_companies=4&with_genres=16';
+  const urlparamountAction = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_companies=4&with_genres=28';
+  const urlparamountHorror = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_companies=4&with_genres=27';
 
   const options = {
     method: 'GET',
@@ -55,7 +91,8 @@ app.get('/paramount', (req, res) => {
     }
   }
 
-  fetch(urlParamount, options)
+  // Fetch data from the first URL
+  fetch(urlparamount, options)
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok')
@@ -63,14 +100,77 @@ app.get('/paramount', (req, res) => {
       return response.json()
     })
     .then(paramountJson => {
-      res.render('paramount.ejs', {
-        paramountLijst: paramountJson.results || [], 
-      })
+      // Fetch data from the second URL
+      fetch(urlparamountAnimation, options)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok')
+          }
+          return response.json()
+        })
+        .then(paramountAnimationJson => {
+          // Fetch data from the third URL
+          fetch(urlparamountAction, options)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Network response was not ok')
+              }
+              return response.json()
+            })
+            .then(paramountActionJson => {
+              // Fetch data from the fourth URL
+              fetch(urlparamountHorror, options)
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error('Network response was not ok')
+                  }
+                  return response.json()
+                })
+                .then(paramountHorrorJson => {
+                  res.render('paramount.ejs', {
+                    paramountLijst: paramountJson.results || [], 
+                    paramountAnimation: paramountAnimationJson.results || [], 
+                    paramountAction: paramountActionJson.results || [], 
+                    paramountHorror: paramountHorrorJson.results || [], 
+                  })
+                })
+                .catch(err => {
+                  console.error('error:' + err)
+                  res.render('paramount.ejs', {
+                    paramountLijst: [], 
+                    paramountAnimation: [], 
+                    paramountAction: [], 
+                    paramountHorror: [], 
+                  })
+                })
+            })
+            .catch(err => {
+              console.error('error:' + err)
+              res.render('paramount.ejs', {
+                paramountLijst: [], 
+                paramountAnimation: [], 
+                paramountAction: [], 
+                paramountHorror: [], 
+              })
+            })
+        })
+        .catch(err => {
+          console.error('error:' + err)
+          res.render('paramount.ejs', {
+            paramountLijst: [], 
+            paramountAnimation: [], 
+            paramountAction: [], 
+            paramountHorror: [], 
+          })
+        })
     })
     .catch(err => {
       console.error('error:' + err)
       res.render('paramount.ejs', {
         paramountLijst: [], 
+        paramountAnimation: [], 
+        paramountAction: [], 
+        paramountHorror: [], 
       })
     })
 })

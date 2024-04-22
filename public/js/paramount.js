@@ -1,22 +1,23 @@
 document.addEventListener("DOMContentLoaded", function() {
-  document.title = "Sync with Sony";
 
-  const audio = new Audio('audio/sony.mp3');
+  document.title = "Sync with Paramount";
+
+  const audio = new Audio('audio/paramount-intro.mp3');
   audio.loop = false;
   audio.play();
   audio.volume = 0.4;
 
-  const magicSound = document.getElementById('sonyBtn');
+  const magicSound = document.getElementById('mountainBtn');
 
   magicSound.addEventListener('click', ()=> {
-    magicSound.classList.add('sonyStyle')
+    magicSound.classList.add('paramountStyle')
     audio.loop = false;
     audio.play();
     audio.volume = 0.4;
 
     setTimeout(() => {
-      magicSound.classList.remove('sonyStyle');
-  }, 3000); 
+      magicSound.classList.remove('paramountStyle');
+  }, 8000); 
  
   })
 
