@@ -17,7 +17,7 @@
 | Loading the MovieDB API | 
 | Filter on movie studio |
 | Search through your own prompt |
-| Page transition API |
+| Page transition |
 
 <p>Sync is a cutting-edge streaming service that revolutionizes your movie-watching experience with innovative features:</p>
 
@@ -43,6 +43,8 @@ $ npm install (package name)
 ```
 
 <p>And you're all set and done to use the app!</p>
+
+### Interested in the complete progress? Read the extended <a href="https://github.com/AliAhmed205/API-2324/wiki">progress</a>.
 
 <p>Copyright © 2024 Ali Ahmed</p>
 <p>This is project is licensed with an MIT certificate</p>
