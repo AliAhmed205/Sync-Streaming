@@ -17,7 +17,7 @@
 | Loading the MovieDB API | 
 | Filter on movie studio |
 | Search through your own prompt |
-| Page transition |
+| Geolocation API |
 
 <p>Sync is a cutting-edge streaming service that revolutionizes your movie-watching experience with innovative features:</p>
 
