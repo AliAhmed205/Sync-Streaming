@@ -21,13 +21,22 @@
   --sync-p-font: "Comfortaa", sans-serif;
   --sync-emoji-font: "Noto Emoji", sans-serif;
   --disney-font: 'Disney', 'Comfortaa', sans-serif;
+}
 
+b {
+  color: rgb(130, 138, 255);
 }
 
 #hidden {
   overflow: hidden;
 }
 
+#userLocation {
+  animation: fadeIn 2s .5s forwards;
+  margin-bottom: .5rem;
+  opacity: 0;
+  font-size: 1rem;
+}
 
 body {
   font-family: var(--sync-p-font);

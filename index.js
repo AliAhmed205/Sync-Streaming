@@ -44,38 +44,6 @@ app.get('/', (req, res) => {
     })
 })
 
-// app.get('/paramount', (req, res) => {
-//   const urlParamount = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_companies=4';
-
-//   const options = {
-//     method: 'GET',
-//     headers: {
-//       accept: 'application/json',
-//       Authorization: `Bearer ${process.env.MOVIEDB_TOKEN}`
-//     }
-//   }
-
-//   fetch(urlParamount, options)
-//     .then(response => {
-//       if (!response.ok) {
-//         throw new Error('Network response was not ok')
-//       }
-//       return response.json()
-//     })
-//     .then(paramountJson => {
-//       res.render('paramount.ejs', {
-//         paramountLijst: paramountJson.results || [], 
-//       })
-//     })
-//     .catch(err => {
-//       console.error('error:' + err)
-//       res.render('paramount.ejs', {
-//         paramountLijst: [], 
-//       })
-//     })
-// })
-
-
 
 app.get('/paramount', (req, res) => {
   const urlparamount = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_companies=4';
