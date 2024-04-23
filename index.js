@@ -333,11 +333,9 @@ app.get('/disney', (req, res) => {
 
 
 
-// Dynamische routing via een id 
 app.get('/results/search', (req, res) => {
   const searchQuery = req.query.term
 
-  // Zoekopdracht met release_date.lte-parameter
   const urlSearch = `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&include_adult=false&language=en-US&page=1`
   const options = {
     method: 'GET',

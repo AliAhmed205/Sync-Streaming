@@ -6,6 +6,7 @@
 <body>
     <header>
         <nav>
+          <a href="/">&#8249;</a>
         <h1>sync</h1>
         <button type="button" id="searchIcon">🔍</button>
         </nav>
@@ -19,7 +20,7 @@
       </header>
       <main id="results">
     <% if (queryResults && queryResults.length> 0) { %>
-        <h2>Zoekresultaten:</h2>
+        <h2>Results:</h2>
         <ul>
             <% queryResults.forEach(result=> { %>
                 <li><a href="/detail/<%= result.id %>">

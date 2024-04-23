@@ -60,6 +60,18 @@ header {
       font-size: 3rem;
     }
 
+    a {
+      color: white;
+      text-decoration: none;
+      margin-left: 2rem;
+      font-size: 2.5rem;
+      text-shadow: black 0 0 20px;
+      position: absolute;
+      left: 0;
+    }
+
+
+
     button {
       grid-column-start: 3;
       justify-self: end;
@@ -315,7 +327,7 @@ main {
 
 
 #results {
-
+  padding: 0rem 2rem 9rem 2rem;
 
   #searchBox {
     display: flex;
@@ -324,6 +336,7 @@ main {
   h2 {
     animation: none;
     opacity: 1;
+    font-size: 1.5rem;
   }
 
   ul {
@@ -632,11 +645,13 @@ main {
 #sony-header {
 
   nav {
-    padding: 2rem;
+    padding: .5rem;
 
-    svg {
+    img {
       width: 11rem;
       padding: 0;
+      animation: fadeIn 1s .5s forwards;
+      opacity: 0;
     }
   }
 }
